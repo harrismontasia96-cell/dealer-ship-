@@ -1,7 +1,7 @@
 package com.pluralsight;
 
 public class Vehicle {
-    private int vin;
+    private int findVehicleByvin;
     private int year;
     private String make;
     private String model;
@@ -10,8 +10,9 @@ public class Vehicle {
     private int odometer;
     private double price;
 
-    public Vehicle(int vin, int year, String make, String model, String vehicleType, String color, int odometer, double price) {
-        this.vin = vin;
+
+    public Vehicle(int findVehicleByvin, int year, String make, String model, String vehicleType, String color, int odometer, double price) {
+        this.findVehicleByvin = findVehicleByvin;
         this.year = year;
         this.make = make;
         this.model = model;
@@ -20,15 +21,12 @@ public class Vehicle {
         this.odometer = odometer;
         this.price = price;
     }
-
+    public int getFindVehicleByvin() {
+        return findVehicleByvin;
+    }
 
     public double getPrice() {
         return price;
-    }
-
-    // Optional: add other getters and setters
-    public int getVin() {
-        return vin;
     }
 
     public int getYear() {
@@ -58,7 +56,7 @@ public class Vehicle {
     @Override
     public String toString() {
         return String.format("%d | %d | %s | %s | %s | %s | %d miles | $%.2f",
-                vin, year, make, model, vehicleType, color, odometer, price);
+                findVehicleByvin, year, make, model, vehicleType, color, odometer, price);
     }
 }
 

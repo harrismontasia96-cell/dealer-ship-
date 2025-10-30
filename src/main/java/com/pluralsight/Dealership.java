@@ -1,5 +1,6 @@
 package com.pluralsight;
 
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +16,7 @@ public class Dealership {
         this.name = name;
         this.address = address;
         this.phone = phone;
+    }
 
         public void sellOrLeaseVehicle () {
             Scanner scanner = new Scanner(System.in);
@@ -41,26 +43,36 @@ public class Dealership {
             System.out.println("Is this a sale or lease? (S/L): ");
             String choice = scanner.nextLine().toUpperCase();
 
-            Contract contract;
+            Contract contract = null;
 
             if (choice.equals("S")) {
                 System.out.println("Does the customer want to finance? (Y/N): ");
                 boolean finance = scanner.nextLine().equalsIgnoreCase("Y");
-
                 contract = new SalesContract(date, name, email, vehicle, finance);
 
-            } else {
+            } else if (choice.equals("L")) {
                 int currentYear = LocalDate.now().getYear();
                 if (currentYear - vehicle.getYear() > 3) {
                     System.out.println("Sorry, vehicles older than 3 years cannot be leased.");
                     return;
                 }
                 contract = new LeaseContract(date, name, email, vehicle);
+
+            } else {
+                System.out.println("Invalid choice! Please enter 'S' or 'L'.");
+                return;
             }
 
+            System.out.println("----------------------------------");
+            System.out.println("CONTRACT SUMMARY");
+            System.out.println("Type: " + contract.getContractType());
+            System.out.println("Customer: " + contract.getCustomerName());
+            System.out.println("Vehicle: " + contract.getMake() + " " + contract.getModel());
             System.out.println("Total Price: $" + contract.getTotalPrice());
             System.out.println("Monthly Payment: $" + contract.getMonthlyPayment());
+            System.out.println("----------------------------------");
         }
+
 
         public Vehicle findVehicleByVin (String vin){
             for (Vehicle v : inventory) {
@@ -69,15 +81,6 @@ public class Dealership {
                 }
             }
             return null;
-        }
-        public String getName () {
-            return name;
-        }
-        public String getAddress () {
-            return address;
-        }
-        public String getPhone () {
-            return phone;
         }
 
         public void addVehicle (Vehicle v){
@@ -99,8 +102,14 @@ public class Dealership {
             }
             return matches;
         }
-    }
+
+    public String getName() { return name; }
+    public String getAddress() { return address; }
+    public String getPhone() { return phone; }
 }
+
+
+
 
 
 

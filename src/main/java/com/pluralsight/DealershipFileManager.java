@@ -59,7 +59,7 @@ public class DealershipFileManager {
             bw.write(dealership.getName() + "|" + dealership.getAddress() + "|" + dealership.getPhone() + "\n");
             for (Vehicle v : dealership.getAllVehicles()) {
                 bw.write(String.format("%d|%d|%s|%s|%s|%s|%d|%.2f\n",
-                        v.getVin(), v.getYear(), v.getMake(), v.getModel(),
+                        v.getFindVehicleByvin(), v.getYear(), v.getMake(), v.getModel(),
                         v.getVehicleType(), v.getColor(), v.getOdometer(), v.getPrice()));
             }
         } catch (IOException e) {

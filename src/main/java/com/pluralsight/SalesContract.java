@@ -7,11 +7,31 @@ public class SalesContract extends Contract {
     private static final double PROCESSING_FEE_OVER_10K = 495;
 
     private boolean finance;
+    private Vehicle vehicleSold;
+
 
     public SalesContract(String date, String customerName, String customerEmail,
                          Vehicle vehicleSold, boolean finance) {
-        super(date, customerName, customerEmail, vehicleSold);
+
+        super(
+                "SALE",
+                dateOfContract,
+                customerName,
+                customerEmail,
+                vehicleSold.getVin(),
+                vehicleSold.getYear(),
+                vehicleSold.getMake(),
+                vehicleSold.getModel(),
+                vehicleSold.getVehicleType(),
+                vehicleSold.getColor(),
+                vehicleSold.getOdometer(),
+                vehicleSold.getMake() + " " + vehicleSold.getModel(),
+                0.0, // total price (computed later)
+                0.0  // monthly payment (computed later)
+        );
+
         this.finance = finance;
+        this.vehicleSold = vehicleSold;
     }
     @Override
     public double getTotalPrice() {
