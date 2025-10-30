@@ -1,15 +1,26 @@
 package com.pluralsight;
 
 public abstract class Contract {
+    protected String contractType;
     protected String DateOfContract;
     protected String Customername;
     protected String Customeremail;
+    protected int vehicleVin;
+    protected int year;
+    protected String make;
+    protected String model;
+    protected String vehicleType;
+    protected String color;
+    protected double odometer;
     protected String Vehiclesold;
     protected int Totalprice;
     protected double Monthlypayment;
 
 
-    public Contract(String date, String customerName, String customerEmail, Vehicle vehicleSold) {
+    public Contract(String contractType,String Dateofcontract, String customerName,
+                    String customerEmail, int vehicleVin, int year,
+                    String make, String model, String vehicleType,
+                    String color, double odometer,Vehicle vehicleSold) {
         this.DateOfContract = DateOfContract;
         this.Customername = Customername;
         this.Customeremail = "";
