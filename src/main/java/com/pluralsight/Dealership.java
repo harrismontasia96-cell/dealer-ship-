@@ -12,49 +12,58 @@ public class Dealership {
     private String phone;
     private List<Vehicle> inventory = new ArrayList<>();
 
+
     public Dealership(String name, String address, String phone) {
         this.name = name;
         this.address = address;
         this.phone = phone;
     }
 
-        public void sellOrLeaseVehicle () {
-            Scanner scanner = new Scanner(System.in);
+    public void sellOrLeaseVehicle() {
+        Scanner scanner = new Scanner(System.in);
 
-            System.out.println("Enter date (YYYY-MM-DD): ");
-            String date = scanner.nextLine();
+        System.out.println("Enter vehicle VIN: ");
+        String date = scanner.nextLine();
+        String vinInput = scanner.nextLine();
 
-            System.out.println("Enter customer name: ");
-            String name = scanner.nextLine();
+        Vehicle vehicleFound = findVehicleByVin(vinInput);
 
-            System.out.println("Enter customer email: ");
-            String email = scanner.nextLine();
+        if (vehicleFound == null) {
+            System.out.println("Vehicle not found!");
+            return;
+        }
 
-            System.out.println("Enter vehicle VIN: ");
-            String vin = scanner.nextLine();
+        System.out.println("Enter date (YYYY-MM-DD): ");
+        String name = scanner.nextLine();
 
-            Vehicle vehicle = inventory.findVehicleByVin(vin);
+        System.out.println("Enter customer name: ");
+        String email = scanner.nextLine();
 
-            if (vehicle == null) {
-                System.out.println("Vehicle not found!");
-                return;
-            }
+        System.out.println("Enter customer email: ): ");
+        String vin = scanner.nextLine();
 
-            System.out.println("Is this a sale or lease? (S/L): ");
-            String choice = scanner.nextLine().toUpperCase();
+        System.out.println("Is this a sale or lease? (S/L): ");
+        String choice = scanner.nextLine().toUpperCase();
 
-            Contract contract = null;
+        Contract contract;
 
-            if (choice.equals("S")) {
-                System.out.println("Does the customer want to finance? (Y/N): ");
-                boolean finance = scanner.nextLine().equalsIgnoreCase("Y");
-                contract = new SalesContract(date, name, email, vehicle, finance);
+        if (choice.equals("S")) {
+            System.out.println("Does the customer want to finance? (Y/N): ");
+            boolean finance = scanner.nextLine().equalsIgnoreCase("Y");
+
+            if (choice.equals("M")) {
+                System.out.println("customer wants to finance + SalesContract: ");
+                Contract = new SalesContract(date, customerName, customerEmail, vehicleFound, financeChoice);
+                String Contract = scanner.nextLine();
 
             } else if (choice.equals("L")) {
                 int currentYear = LocalDate.now().getYear();
-                if (currentYear - vehicle.getYear() > 3) {
+                int vehicleAge = currentYear - vehicleFound.getYear();
+
+                if (vehicleAge > 3) {
                     System.out.println("Sorry, vehicles older than 3 years cannot be leased.");
                     return;
+
                 }
                 contract = new LeaseContract(date, name, email, vehicle);
 
@@ -76,6 +85,7 @@ public class Dealership {
 
         public Vehicle findVehicleByVin (String vin){
             for (Vehicle v : inventory) {
+                Dealership inventory = fileManager.getDealership();
                 if (v.getVin().equalsIgnoreCase(vin)) {
                     return v;
                 }
@@ -103,11 +113,17 @@ public class Dealership {
             return matches;
         }
 
-    public String getName() { return name; }
-    public String getAddress() { return address; }
-    public String getPhone() { return phone; }
+        public String getName () {
+            return name;
+        }
+        public String getAddress () {
+            return address;
+        }
+        public String getPhone () {
+            return phone;
+        }
+    }
 }
-
 
 
 

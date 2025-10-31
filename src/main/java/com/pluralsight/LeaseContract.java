@@ -11,7 +11,6 @@ public class LeaseContract extends Contract {
                          Vehicle vehicleSold) {
         super(
                 "LEASE",
-                dateOfContract,
                 customerName,
                 customerEmail,
                 vehicleSold.getVin(),
@@ -22,8 +21,8 @@ public class LeaseContract extends Contract {
                 vehicleSold.getColor(),
                 vehicleSold.getOdometer(),
                 vehicleSold.getMake() + " " + vehicleSold.getModel(),
-                0.0, // total price (computed later)
-                0.0  // monthly payment (computed later)
+                0.0,
+                0.0
         );
 
         this.vehicleSold = vehicleSold;
