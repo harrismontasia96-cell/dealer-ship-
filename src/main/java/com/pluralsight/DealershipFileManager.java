@@ -35,7 +35,7 @@ public class DealershipFileManager {
 
 
                 Vehicle v = new Vehicle(
-                        Integer.parseInt(data[0]),
+                        data[0],
                         Integer.parseInt(data[1]),
                         data[2], data[3], data[4],
                         data[5], Integer.parseInt(data[6]),
@@ -58,8 +58,8 @@ public class DealershipFileManager {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filename))) {
             bw.write(dealership.getName() + "|" + dealership.getAddress() + "|" + dealership.getPhone() + "\n");
             for (Vehicle v : dealership.getAllVehicles()) {
-                bw.write(String.format("%d|%d|%s|%s|%s|%s|%d|%.2f\n",
-                        v.getFindVehicleByvin(), v.getYear(), v.getMake(), v.getModel(),
+                bw.write(String.format("%s|%d|%s|%s|%s|%s|%d|%.2f\n",
+                        v.getVin(), v.getYear(), v.getMake(), v.getModel(),
                         v.getVehicleType(), v.getColor(), v.getOdometer(), v.getPrice()));
             }
         } catch (IOException e) {

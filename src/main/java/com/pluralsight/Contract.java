@@ -3,45 +3,42 @@ package com.pluralsight;
 public abstract class Contract {
     protected String contractType;
     protected String DateOfContract;
-    protected String Customername;
-    protected String Customeremail;
-    protected int findvehicleByVin;
+    protected String customerName;
+    protected String customerEmail;
+    protected int vehicleVin;
     protected int year;
     protected String make;
     protected String model;
     protected String vehicleType;
     protected String color;
     protected double odometer;
-    protected String Vehiclesold;
-    protected int Totalprice;
-    protected double Monthlypayment;
+    protected String vehicleSold;
+    protected int totalPrice;
+    protected double monthlyPayment;
 
-
-    public Contract(String contractType,String Dateofcontract, String customerName,
-                    String customerEmail, int vehicleVin, int year,
+    public Contract(String contractType, String dateOfContract, String customerName,
+                    String customerEmail, String vehicleVin, int year,
                     String make, String model, String vehicleType,
-                    String color, double odometer,Vehicle vehicleSold) {
-        this.DateOfContract = DateOfContract;
-        this.Customername = Customername;
-        this.Customeremail = "";
-        this.findvehicleByVin = findvehicleByVin;
+                    String color, double odometer, String vehicleSold) {
+        this.contractType = contractType;
+        this.dateOfContract = dateOfContract;
+        this.customerName = customerName;
+        this.customerEmail = customerEmail;
+        this.vehicleVin = vehicleVin;
         this.year = year;
         this.make = make;
         this.model = model;
         this.vehicleType = vehicleType;
         this.color = color;
         this.odometer = odometer;
-        this.Vehiclesold = Vehiclesold;
-        this.Totalprice = Totalprice;
-        this.Monthlypayment = Monthlypayment;
-
+        this.vehicleSold = vehicleSold;
+        this.totalPrice = 0;
+        this.monthlyPayment = 0;
     }
+
     public abstract double getTotalPrice();
-    public abstract double getMonthlyPayment();
 
-    public String getContractType() {
-        return contractType;
-    }
+    public abstract double getMonthlyPayment();
 
     public String getDateOfContract() {
         return dateOfContract;
@@ -55,34 +52,6 @@ public abstract class Contract {
         return customerEmail;
     }
 
-    public int getfindVehicleByVin() {
-        return findvehicleByVin;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public String getMake() {
-        return make;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public String getVehicleType() {
-        return vehicleType;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public double getOdometer() {
-        return odometer;
-    }
-
     public String getVehicleSold() {
         return vehicleSold;
     }
@@ -94,7 +63,6 @@ public abstract class Contract {
     public double getMonthlyPaymentValue() {
         return monthlyPayment;
     }
-
 
     public void setDateOfContract(String dateOfContract) {
         this.dateOfContract = dateOfContract;
@@ -120,9 +88,3 @@ public abstract class Contract {
         this.monthlyPayment = monthlyPayment;
     }
 }
-
-
-
-
-
-

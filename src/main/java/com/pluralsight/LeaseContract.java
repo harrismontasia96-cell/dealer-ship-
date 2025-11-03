@@ -26,6 +26,13 @@ public class LeaseContract extends Contract {
         );
 
         this.vehicleSold = vehicleSold;
+
+        double totalPrice = getTotalPrice();
+        double monthlyPayment = getMonthlyPayment();
+
+        super.setTotalPrice(totalPrice);
+        super.setMonthlyPayment(monthlyPayment);
+
     }
 
 

@@ -15,7 +15,7 @@ public class SalesContract extends Contract {
 
         super(
                 "SALE",
-                dateOfContract,
+                date,
                 customerName,
                 customerEmail,
                 vehicleSold.getVin(),

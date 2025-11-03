@@ -23,7 +23,6 @@ public class Dealership {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Enter vehicle VIN: ");
-        String date = scanner.nextLine();
         String vinInput = scanner.nextLine();
 
         Vehicle vehicleFound = findVehicleByVin(vinInput);
@@ -34,27 +33,25 @@ public class Dealership {
         }
 
         System.out.println("Enter date (YYYY-MM-DD): ");
-        String name = scanner.nextLine();
+        String date = scanner.nextLine();
 
         System.out.println("Enter customer name: ");
-        String email = scanner.nextLine();
+        String customerName = scanner.nextLine();
 
         System.out.println("Enter customer email: ): ");
-        String vin = scanner.nextLine();
+        String customeremail = scanner.nextLine();
 
         System.out.println("Is this a sale or lease? (S/L): ");
         String choice = scanner.nextLine().toUpperCase();
 
-        Contract contract;
+        Contract contract = null;
 
         if (choice.equals("S")) {
             System.out.println("Does the customer want to finance? (Y/N): ");
             boolean finance = scanner.nextLine().equalsIgnoreCase("Y");
 
-            if (choice.equals("M")) {
-                System.out.println("customer wants to finance + SalesContract: ");
-                Contract = new SalesContract(date, customerName, customerEmail, vehicleFound, financeChoice);
-                String Contract = scanner.nextLine();
+            contract = new SalesContract(date, customerName, customeremail, vehicleFound, finance);
+
 
             } else if (choice.equals("L")) {
                 int currentYear = LocalDate.now().getYear();
@@ -65,7 +62,7 @@ public class Dealership {
                     return;
 
                 }
-                contract = new LeaseContract(date, name, email, vehicle);
+                contract = new LeaseContract(date, customerName, customeremail, vehicleFound);
 
             } else {
                 System.out.println("Invalid choice! Please enter 'S' or 'L'.");
@@ -83,9 +80,8 @@ public class Dealership {
         }
 
 
-        public Vehicle findVehicleByVin (String vin){
+        public Vehicle findVehicleByVin (String vin) {
             for (Vehicle v : inventory) {
-                Dealership inventory = fileManager.getDealership();
                 if (v.getVin().equalsIgnoreCase(vin)) {
                     return v;
                 }
@@ -123,7 +119,7 @@ public class Dealership {
             return phone;
         }
     }
-}
+
 
 
 
